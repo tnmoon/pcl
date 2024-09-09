@@ -14,3 +14,6 @@ mkdir -p buildr
 
 emcmake cmake ${FLAGS[@]} ./build/cmake
 emmake make -j2 install
+
+cp /root/pcl/wasm/deps/lz4/buildr/include/lz4.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1
+cp /root/pcl/wasm/deps/lz4/buildr/include/lz4hc.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1

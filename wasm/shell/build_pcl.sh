@@ -31,14 +31,9 @@ CONFIG=(
   -DBUILD_simulation=OFF
   -DBUILD_tools=OFF
   -DEigen3_DIR=/usr/lib/cmake/eigen3
-  # -DCMAKE_PREFIX_PATH=/root/pcl/wasm/deps/boost/build/lib/cmake/Boost-1.86.0
   -DCMAKE_FIND_LIBRARY_PREFIXES=
   -DCMAKE_FIND_LIBRARY_SUFFIXES=.bc .so .a .wasm .js
-  # -DCMAKE_GENERATOR_PLATFORM=x86_64
   -DCMAKE_BUILD_TYPE=Debug
-  # -DBoost_DIR=/root/pcl/wasm/deps/boost/build/lib/cmake/Boost-1.86.0
-  # -Dboost_headers_DIR=/root/pcl/wasm/deps/boost/build/lib/cmake/boost_headers-1.86.0
-  # -Dboost_filesystem_DIR=/root/pcl/wasm/deps/boost/build/lib/cmake/boost_filesystem-1.86.0
 )
 
 SUPPORT=(
@@ -89,10 +84,5 @@ rm -rf $LIB_PATH/build
 mkdir -p build
 cd build
 
-cp /usr/include/lz4.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1
-cp /usr/include/lz4hc.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1
-
 emcmake cmake ${DEPS[@]} ${CONFIG[@]} ${SUPPORT[@]} ${MODULES[@]} ..
 emmake make -j4 install
-
-rm -rf !(include|lib)

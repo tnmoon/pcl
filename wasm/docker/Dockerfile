@@ -13,7 +13,8 @@ RUN apt-get update && apt-get -V install -y \
     unzip \
     wget \
     pkg-config \
-    build-essential
+    build-essential \
+    git
 
 RUN mkdir -p /root/download
 
@@ -25,7 +26,7 @@ RUN wget -O /root/download/emsdk-${EMSDK_VERSION}.zip https://codeload.github.co
     ./emsdk activate latest && \
     echo "source "/root/emsdk-$EMSDK_VERSION/emsdk_env.sh"" >> $HOME/.bashrc
 
-RUN wget -O /root/download/
-
 RUN echo "export PKG_CONFIG_PATH=/root/pcl/wasm/deps/lz4/buildr/lib/pkgconfig:$PKG_CONFIG_PATH" >> $HOME/.bashrc
 
+RUN git clone -b wasm --single-branch --depth=1 https://github.com/tnmoon/pcl && \
+    wasm/shell/build.sh

@@ -23,8 +23,5 @@ rm -rf $LIB_PATH/build
 mkdir -p build
 cd $LIB_PATH/build
 
-cp /root/pcl/wasm/deps/lz4/buildr/include/lz4.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1
-cp /root/pcl/wasm/deps/lz4/buildr/include/lz4hc.h /root/emsdk-3.1.65/upstream/emscripten/cache/sysroot/include/c++/v1
-
 emcmake cmake ${FLAGS[@]} ..
 emmake make -j2 install 
