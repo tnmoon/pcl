@@ -1,6 +1,11 @@
 ### ---[ PCL global CMake
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LZ4 REQUIRED liblz4)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_PTHREADS=1")
+add_compile_options(-msimd128)
+
 if(POLICY CMP0074)
   # 1. Remove with 3.12.4.
   # 2. Remove search paths with *_ROOT since they will be automatically checked

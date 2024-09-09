@@ -1,0 +1,4 @@
+wasm/deps
+build
+**/.DS_Store
+.vscode

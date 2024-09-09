@@ -393,6 +393,9 @@ aligned_malloc(std::size_t size)
   ptr = _aligned_malloc(size, 16);
 #elif defined(ANDROID)
   ptr = memalign(16, size);
+#elif defined(__EMSCRIPTEN__)
+  if (posix_memalign(&ptr, 16, size))
+    ptr = 0;
 #else
 #error aligned_malloc not supported on your platform
   ptr = 0;
@@ -411,6 +414,8 @@ aligned_free(void* ptr)
   _aligned_free(ptr);
 #elif defined(ANDROID)
   free(ptr);
+#elif defined(__EMSCRIPTEN__)
+  std::free(ptr);
 #else
 #error aligned_free not supported on your platform
 #endif
